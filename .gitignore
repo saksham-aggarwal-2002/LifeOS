@@ -1,0 +1,18 @@
+# Python and tools
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# py2app build output (./build_app.sh)
+build/
+dist/
+
+# Secrets: the OpenAI key
+.env
+
+# Data never goes in git: your own lives in ../LifeOS_data; the test folder and
+# the Settings choice of folder are per-machine
+test_data/
+data_folder.txt

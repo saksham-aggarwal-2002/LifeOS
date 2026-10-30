@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>LifeOS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="tabs">
+    <button class="tab active" data-tab="log">Overview</button>
+    <button class="tab" data-tab="todo">To Do</button>
+    <button class="tab" data-tab="gym">Gym</button>
+    <button class="tab" data-tab="food">Food</button>
+    <button class="tab" data-tab="journal">Journal</button>
+    <button class="tab" data-tab="body">Body</button>
+    <span class="spacer"></span>
+    <span id="test-data-badge" class="test-data-badge" title="Not your own data: change it in Settings" hidden>Test data</span>
+    <button class="tab" data-tab="settings">Settings</button>
+  </nav>
+
+  <main>
+    <section id="tab-log" class="tab-panel with-sidebar">
+      <div class="pane">
+        <div id="log-daybar"></div>
+        <div class="log-day">
+          <h2 class="log-heading">Tasks</h2>
+          <ul id="log-tasks" class="task-list"></ul>
+          <h2 class="log-heading">Log</h2>
+          <div id="log-boxes"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-todo" class="tab-panel with-sidebar" hidden>
+      <aside class="sidebar">
+        <button class="nav-item" data-view="myday"><span>My Day</span><span class="count"></span></button>
+        <button class="nav-item" data-view="calendar">Calendar</button>
+        <hr>
+        <div id="todo-lists"></div>
+        <form id="todo-new-list">
+          <input class="quiet-input" placeholder="+ New list" maxlength="100">
+        </form>
+        <hr>
+        <button class="nav-item subtle" data-view="deleted">Recently deleted</button>
+      </aside>
+
+      <div class="pane">
+        <header class="pane-header">
+          <div>
+            <h1 id="todo-title" title="Double-click to rename"></h1>
+            <p id="todo-subtitle" class="muted subtitle"></p>
+          </div>
+          <button id="todo-delete-list" class="text-button" hidden>Delete list</button>
+          <div id="cal-nav" class="cal-nav" hidden>
+            <button id="cal-prev" class="icon-button" title="Previous week">‹</button>
+            <button id="cal-today" class="text-button">This week</button>
+            <button id="cal-next" class="icon-button" title="Next week">›</button>
+          </div>
+        </header>
+        <form id="todo-add-task" hidden>
+          <input class="add-input" placeholder="+ Add a task" maxlength="500">
+        </form>
+        <ul id="todo-tasks" class="task-list"></ul>
+        <button id="todo-completed-toggle" class="section-toggle" hidden></button>
+        <ul id="todo-completed" class="task-list"></ul>
+        <div id="calendar" class="calendar-wrap" hidden>
+          <div id="cal-week" class="calendar"></div>
+          <aside id="cal-unscheduled" class="cal-unscheduled"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-gym" class="tab-panel with-sidebar" hidden>
+      <aside class="sidebar">
+        <button class="nav-item" data-view="all">Gym Diary</button>
+        <button class="nav-item" data-view="exercises">Exercises</button>
+        <button class="nav-item" data-view="templates">Templates</button>
+      </aside>
+
+      <div class="pane">
+        <header class="pane-header">
+          <div>
+            <h1 id="gym-title"></h1>
+            <p id="gym-subtitle" class="muted subtitle"></p>
+          </div>
+          <button id="gym-extract" class="primary-button" hidden>Extract Structured Data</button>
+        </header>
+
+        <div id="gym-daylog" class="tab-daylog"></div>
+        <div id="gym-all" class="gym-content"></div>
+        <div id="gym-exercises" class="gym-content" hidden></div>
+
+        <div id="gym-templates" class="workouts" hidden></div>
+      </div>
+    </section>
+
+    <section id="tab-food" class="tab-panel with-sidebar" hidden>
+      <aside class="sidebar">
+        <button class="nav-item" data-view="diary">Food Diary</button>
+        <button class="nav-item" data-view="foods">Foods</button>
+        <button class="nav-item" data-view="templates">Templates</button>
+      </aside>
+
+      <div class="pane">
+        <header class="pane-header">
+          <div>
+            <h1 id="food-title"></h1>
+            <p id="food-subtitle" class="muted subtitle"></p>
+          </div>
+          <button id="food-extract" class="primary-button" hidden>Extract Structured Data</button>
+        </header>
+
+        <div id="food-daylog" class="tab-daylog"></div>
+        <div id="food-diary" class="gym-content"></div>
+
+        <div id="food-foods" class="gym-content" hidden>
+          <form id="food-new-food">
+            <input class="add-input" placeholder="+ New food" maxlength="100">
+          </form>
+          <div id="food-food-table"></div>
+        </div>
+
+        <div id="food-templates" class="workouts" hidden></div>
+      </div>
+    </section>
+
+    <section id="tab-journal" class="tab-panel" hidden>
+      <div class="pane">
+        <header class="pane-header">
+          <div>
+            <h1>Journal</h1>
+            <p id="journal-subtitle" class="muted subtitle"></p>
+          </div>
+        </header>
+        <div id="journal-daylog" class="tab-daylog"></div>
+        <div id="journal-entries" class="gym-content"></div>
+      </div>
+    </section>
+
+    <section id="tab-body" class="tab-panel with-sidebar" hidden>
+      <aside class="sidebar">
+        <button class="nav-item active" data-view="weight">Weight</button>
+      </aside>
+
+      <div class="pane">
+        <header class="pane-header">
+          <div>
+            <h1>Weight</h1>
+            <p id="body-subtitle" class="muted subtitle"></p>
+          </div>
+        </header>
+        <div id="body-daylog" class="tab-daylog"></div>
+        <div id="body-weight" class="gym-content"></div>
+      </div>
+    </section>
+
+    <section id="tab-settings" class="tab-panel" hidden>
+      <div class="pane">
+        <header class="pane-header">
+          <div><h1>Settings</h1></div>
+        </header>
+        <div class="gym-content">
+          <h2 class="log-heading">Data folder</h2>
+          <p class="muted subtitle">Your database, Journal Entries, Templates, AI Prompts and backups are all stored here.</p>
+          <div id="settings-data-folder" class="data-folder"></div>
+          <div id="settings-readme" class="readme"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script src="daylog.js"></script>
+  <script src="templates.js"></script>
+  <script src="tabs/log.js"></script>
+  <script src="tabs/todo.js"></script>
+  <script src="tabs/gym.js"></script>
+  <script src="tabs/food.js"></script>
+  <script src="tabs/journal.js"></script>
+  <script src="tabs/body.js"></script>
+  <script src="tabs/settings.js"></script>
+</body>
+</html>

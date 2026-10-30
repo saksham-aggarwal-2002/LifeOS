@@ -1,0 +1,5 @@
+pywebview==6.2.1
+openai==3.37.0
+pydantic==2.14.1
+pytest==9.1.1
+py2app==0.28.10
